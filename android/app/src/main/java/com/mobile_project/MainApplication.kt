@@ -13,6 +13,7 @@ import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
 import com.mobile_project.calculator.CalculatorPackage
 import com.mobile_project.network.NetworkPackage
+import com.mobile_project.alarm.AlarmPackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -22,8 +23,9 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
-              add(CalculatorPackage())
-              add(NetworkPackage())
+              add(CalculatorPackage());
+              add(NetworkPackage());
+              add(AlarmPackage());
             }
 
         override fun getJSMainModuleName(): String = "index"
