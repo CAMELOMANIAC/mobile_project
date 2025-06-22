@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@notifee/react-native": "^9.1.8",
     "react": "19.0.0",
     "react-native": "0.79.2",
     "react-native-webview": "^13.13.5"
