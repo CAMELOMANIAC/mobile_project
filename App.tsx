@@ -21,7 +21,7 @@ import {
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {WebView} from 'react-native-webview';
 
-const {CalculatorModule, NetworkModule} = NativeModules;
+const {CalculatorModule, NetworkModule, AlarmModule} = NativeModules;
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -32,6 +32,7 @@ function App(): React.JSX.Element {
 
   const webviewRef = useRef<WebView>(null);
   const [message, setMessage] = useState<string>();
+  const [resultText, setResultText] = useState<string>();
   const safePadding = '5%';
 
   const sendMessage = (data: object) => {
@@ -48,11 +49,12 @@ function App(): React.JSX.Element {
         <View style={{paddingRight: safePadding}}>
           <Header />
         </View>
+        <Text>{resultText}</Text>
         <Button
           title="CalculatorModule.add(1, 2)"
           onPress={() =>
             CalculatorModule.add(1, 2).then((result: number) =>
-              console.log(result),
+              setResultText(String(result)),
             )
           }
         />
@@ -60,9 +62,16 @@ function App(): React.JSX.Element {
           title="isWifiConnected"
           onPress={() =>
             NetworkModule.isWifiConnected().then((result: boolean) =>
-              console.log(result),
+              setResultText(String(result)),
             )
           }
+        />
+        <Button
+          title="알람을 통해 헤드리스js 호출"
+          onPress={() => {
+            const result = AlarmModule.startCron(0, 56);
+            result.then((result: boolean) => console.log(result));
+          }}
         />
         <Button
           title="Send message"
