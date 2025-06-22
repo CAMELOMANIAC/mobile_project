@@ -5,7 +5,16 @@
   <!-- 와아파이 연결체크 권한 -->
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
+  <!-- 예약 작업 권한 -->
+  <uses-permission android:name="android.permission.SET_ALARM" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+  <!-- 포어그라운드에서 실행 권한 -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+  <!-- 알림 권한 설정 -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
   <application
     android:name=".MainApplication"
@@ -16,6 +25,12 @@
     android:theme="@style/AppTheme"
     android:supportsRtl="true"
     android:usesCleartextTraffic="true">
+    <!-- headlessjs 매핑 -->
+    <service android:name="com.mobile_project.HeadlessService"
+      android:foregroundServiceType="dataSync" />
+    <!-- 알람 리시버 매핑 -->
+    <receiver android:name="com.mobile_project.alarm.AlarmReceiver" />
+
     <activity
       android:name=".MainActivity"
       android:label="@string/app_name"
